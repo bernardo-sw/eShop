@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TexasSteaks.Context;
+
 namespace TexasSteaks
 {
     public class Program
@@ -6,7 +9,12 @@ namespace TexasSteaks
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            ConfigurationManager configuration = builder.Configuration;
+
             // Add services to the container.
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
