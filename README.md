@@ -1,7 +1,14 @@
 # TexasSteaks
 A simple CMS for an e-commerce website.
 
-The project uses:
+## The project uses:
 
 - .NET 8;
-- Entity framework with code first and migrations.
+- Entity framework with code first and migrations;
+- SQL Server 2022 Express.
+
+### NuGet packages:
+
+- Microsoft.EntityFrameworkCore.Design (Version="8.0.22");
+- Microsoft.EntityFrameworkCore.SqlServer (Version="8.0.22");
+- Microsoft.EntityFrameworkCore.Tools (Version="8.0.22");
