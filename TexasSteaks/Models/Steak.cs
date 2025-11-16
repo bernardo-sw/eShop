@@ -12,13 +12,12 @@ namespace TexasSteaks.Models
         [Display(Name = "Name of the Steak")]
         public string Name { get; set; }
 
-        [StringLength(100, MinimumLength = 10)]
+        [StringLength(200, MinimumLength = 10)]
         [Required]
         [Display(Name = "Short description of the Steak")]
         public string ShortDescription { get; set; }
 
-        [StringLength(200, MinimumLength = 10)]
-        [Required]
+        [MinLength(10)]
         [Display(Name = "Description of the Steak")]
         public string Description { get; set; }
 

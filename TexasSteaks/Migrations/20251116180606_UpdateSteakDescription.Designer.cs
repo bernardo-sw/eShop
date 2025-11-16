@@ -11,8 +11,8 @@ using TexasSteaks.Context;
 namespace TexasSteaks.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251114184607_PopulateSteaks")]
-    partial class PopulateSteaks
+    [Migration("20251116180606_UpdateSteakDescription")]
+    partial class UpdateSteakDescription
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,9 +59,7 @@ namespace TexasSteaks.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageURL")
                         .HasMaxLength(300)
@@ -83,8 +81,8 @@ namespace TexasSteaks.Migrations
 
                     b.Property<string>("ShortDescription")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("ThumbnailURL")
                         .HasMaxLength(300)
