@@ -5,7 +5,7 @@ A simple CMS for an e-commerce website.
 
 - .NET 8;
 - ASP.NET Core MVC;
-- Entity framework with code first and migrations;
+- Entity Framework using LINQ to Entities, Lambda expressions, Code First and Migrations;
 - SQL Server 2022 Express.
 
 ### NuGet packages:
