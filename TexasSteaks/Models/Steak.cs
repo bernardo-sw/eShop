@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TexasSteaks.Models
@@ -26,6 +27,11 @@ namespace TexasSteaks.Models
         [Column(TypeName = "decimal(7,2)")]
         [Range(1, 99999.00)]
         public decimal Price { get; set; }
+
+        [Required]
+        [Display(Name = "Weight of the Steak in grams")]
+        [Range(1, 999.00)]
+        public double Weight { get; set; } = 1.0d;
 
         [Display(Name = "Image URL of the Steak")]
         [StringLength(300)]
