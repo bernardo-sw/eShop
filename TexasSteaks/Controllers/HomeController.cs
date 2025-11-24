@@ -16,7 +16,7 @@ namespace TexasSteaks.Controllers
 
         public IActionResult Index()
         {
-            var favoritesSteaks = _steakRepository.FavoritesSteaks;
+            IEnumerable<Steak> favoritesSteaks = _steakRepository.FavoritesSteaks;
             return View(favoritesSteaks);
         }
 

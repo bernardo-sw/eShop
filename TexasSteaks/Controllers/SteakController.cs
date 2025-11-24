@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TexasSteaks.Repositories.Interfaces;
+using TexasSteaks.ViewModels;
 
 namespace TexasSteaks.Controllers
 {
@@ -14,8 +15,12 @@ namespace TexasSteaks.Controllers
 
         public IActionResult List()
         {
-            var steaks = _steakRepository.Steaks;
-            return View(steaks);
+            SteakListViewModel steaksListViewModel = new()
+            {
+                Steaks = _steakRepository.Steaks,
+                CurrentCategory = "Categoria Atual"
+            };
+            return View(steaksListViewModel);
         }
     }
 }
