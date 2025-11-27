@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using TexasSteaks.Context;
 using TexasSteaks.Models;
 using TexasSteaks.Repositories.Interfaces;
@@ -26,10 +27,11 @@ namespace TexasSteaks.Repositories
             //Assigns the cart ID in the Session
             session.SetString("cartId", cartId);
 
-            //Returns the shopping cart with the assigned or obtained ID.
+            //Returns the shopping cart with the assigned or obtained ID and yours items.
             return new ShoppingCart
             {
-                Id = cartId
+                Id = cartId,
+                ShoppingCartItems = _context.ShoppingCartItems.Where(s => s.ShoppingCartId == cartId).ToList(),
             };
         }
 
