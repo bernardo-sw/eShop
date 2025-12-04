@@ -1,0 +1,51 @@
+﻿@model ShoppingCartViewModel
+
+@{
+    ViewData["Title"] = "Cart";
+    ViewData["PageHeader"] = "Shopping Cart";
+    ViewData["Icon"] = "bi bi-cart";
+    ViewData["PageDescription"] = "Your Shopping Cart.";
+}
+
+<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Amount</th>
+                <th>Steak</th>
+                <th class="text-end">Price</th>
+                <th class="text-end">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
+            {
+                <tr>
+                    <td class="text-center">@item.Amount</td>
+                    <td class="text-left">@item.Steak.Name</td>
+                    <td class="text-end">@item.Steak.Price.ToString("c")</td>
+                    <td class="text-end">
+                        @((item.Amount * item.Steak.Price).ToString("c"))
+                    </td>
+                    <td class="text-center">
+                        <a asp-controller="ShoppingCart" asp-action="RemoveItem" asp-route-steakId="@item.Steak.Id">
+                            <img src="~/images/delete.png" width="10" height="10" />
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-end">Total:</td>
+                <td class="text-end">
+                    @Model.ShoppingCartTotal.ToString("c")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <p class="d-inline-flex gap-1">
+        <a class="btn btn-success fixed-size-btn" asp-controller="Order" asp-action="Checkout">Finalizar o pedido</a>
+        <a class="btn btn-primary fixed-size-btn" asp-controller="Steak" asp-action="List">Continuar comprando</a>
+    </p>
+</div>
