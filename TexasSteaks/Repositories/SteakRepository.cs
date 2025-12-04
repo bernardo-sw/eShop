@@ -14,7 +14,7 @@ namespace TexasSteaks.Repositories
 
         public IEnumerable<Steak> Steaks => _context.Steaks.Include(c => c.Category);
 
-        public IEnumerable<Steak> FavoritesSteaks => _context.Steaks
+        public IEnumerable<Steak> FavoriteSteaks => _context.Steaks
             .Where(s => s.IsFavorite)
             .Include(c => c.Category);
 

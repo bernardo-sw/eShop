@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Steak>
+﻿@model HomeViewModel
 
 @{
     ViewData["Title"] = "Home";
@@ -8,7 +8,7 @@
 
 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-    @foreach (var steak in Model)
+    @foreach (var steak in Model.FavoriteSteaks)
     {
         <partial name="_SteaksSummary" for="@steak" />
     }

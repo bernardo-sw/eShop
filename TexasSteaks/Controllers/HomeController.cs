@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TexasSteaks.Models;
 using TexasSteaks.Repositories.Interfaces;
+using TexasSteaks.ViewModels;
 
 namespace TexasSteaks.Controllers
 {
@@ -16,8 +17,12 @@ namespace TexasSteaks.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Steak> favoritesSteaks = _steakRepository.FavoritesSteaks;
-            return View(favoritesSteaks);
+            HomeViewModel homeViewModel = new()
+            {
+                FavoriteSteaks = _steakRepository.FavoriteSteaks
+            };
+
+            return View(homeViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
