@@ -1,4 +1,4 @@
-﻿@model Steak
+﻿@model Product
 
 <div class="col mb-5">
     <div class="card h-100">
@@ -16,7 +16,15 @@
         }
 
         <!-- Product image-->
-        <img class="card-img-top" src="~/images/@Model.ImageURL" alt="..." />
+        @if (Model.ImageURL is null)
+        {
+            <img class="card-img-top" src="~/images/6c757d.jpg" alt="..." />
+        }
+        else
+        {
+            <img class="card-img-top" src="~/images/products/@Model.ImageURL" alt="..." />
+        }
+
         <!-- Product details-->
         <div class="card-body p-4">
             <div class="text-center">

@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TexasSteaks.Context;
+using eShop.Context;
 
 #nullable disable
 
-namespace TexasSteaks.Migrations
+namespace eShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace TexasSteaks.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TexasSteaks.Models.Category", b =>
+            modelBuilder.Entity("eShop.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,8 +32,8 @@ namespace TexasSteaks.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -45,32 +45,7 @@ namespace TexasSteaks.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("TexasSteaks.Models.ShoppingCartItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ShoppingCartId")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<int?>("SteakId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SteakId");
-
-                    b.ToTable("ShoppingCartItems");
-                });
-
-            modelBuilder.Entity("TexasSteaks.Models.Steak", b =>
+            modelBuilder.Entity("eShop.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -107,8 +82,8 @@ namespace TexasSteaks.Migrations
 
                     b.Property<string>("ShortDescription")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<byte>("Star")
                         .HasColumnType("tinyint");
@@ -124,22 +99,38 @@ namespace TexasSteaks.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Steaks");
+                    b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("TexasSteaks.Models.ShoppingCartItem", b =>
+            modelBuilder.Entity("eShop.Models.ShoppingCartItem", b =>
                 {
-                    b.HasOne("TexasSteaks.Models.Steak", "Steak")
-                        .WithMany()
-                        .HasForeignKey("SteakId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Navigation("Steak");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShoppingCartId")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ShoppingCartItems");
                 });
 
-            modelBuilder.Entity("TexasSteaks.Models.Steak", b =>
+            modelBuilder.Entity("eShop.Models.Product", b =>
                 {
-                    b.HasOne("TexasSteaks.Models.Category", "Category")
-                        .WithMany("Steaks")
+                    b.HasOne("eShop.Models.Category", "Category")
+                        .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -147,9 +138,18 @@ namespace TexasSteaks.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("TexasSteaks.Models.Category", b =>
+            modelBuilder.Entity("eShop.Models.ShoppingCartItem", b =>
                 {
-                    b.Navigation("Steaks");
+                    b.HasOne("eShop.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("eShop.Models.Category", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

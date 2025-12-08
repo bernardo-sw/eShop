@@ -1,8 +1,8 @@
-﻿using TexasSteaks.Context;
-using TexasSteaks.Models;
-using TexasSteaks.Repositories.Interfaces;
+﻿using eShop.Context;
+using eShop.Models;
+using eShop.Repositories.Interfaces;
 
-namespace TexasSteaks.Repositories
+namespace eShop.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {

@@ -1,6 +1,6 @@
-﻿using TexasSteaks.Models;
+﻿using eShop.Models;
 
-namespace TexasSteaks.Repositories.Interfaces
+namespace eShop.Repositories.Interfaces
 {
     public interface ICategoryRepository
     {

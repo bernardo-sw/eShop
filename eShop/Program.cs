@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using TexasSteaks.Context;
-using TexasSteaks.Repositories;
-using TexasSteaks.Repositories.Interfaces;
+using eShop.Context;
+using eShop.Repositories;
+using eShop.Repositories.Interfaces;
 
-namespace TexasSteaks
+namespace eShop
 {
     public class Program
     {
@@ -18,7 +18,7 @@ namespace TexasSteaks
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
-            builder.Services.AddTransient<ISteakRepository, SteakRepository>();
+            builder.Services.AddTransient<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
             
             builder.Services.AddControllersWithViews();

@@ -1,15 +1,15 @@
-﻿@model SteakListViewModel
+﻿@model ProductListViewModel
 
 @{
     ViewData["Title"] = "List";
-    ViewData["PageHeader"] = "List of steaks";
+    ViewData["PageHeader"] = "List of Products";
     ViewData["PageDescription"] = "Full list of our products that will expand your creativity (and open your palate).";
 }
 
 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-    @foreach (var steak in Model.Steaks)
+    @foreach (var product in Model.Products)
     {
-        <partial name="_SteaksSummary" for="@steak" />
+        <partial name="_ProductsSummary" for="@product" />
     }
 </div>

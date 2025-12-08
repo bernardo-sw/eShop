@@ -1,4 +1,4 @@
-namespace TexasSteaks.Models
+namespace eShop.Models
 {
     public class ErrorViewModel
     {

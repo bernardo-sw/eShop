@@ -12,7 +12,7 @@
         <thead>
             <tr>
                 <th>Amount</th>
-                <th>Steak</th>
+                <th>Product</th>
                 <th class="text-end">Price</th>
                 <th class="text-end">Subtotal</th>
             </tr>
@@ -22,14 +22,14 @@
             {
                 <tr>
                     <td class="text-center">@item.Amount</td>
-                    <td class="text-left">@item.Steak.Name</td>
-                    <td class="text-end">@item.Steak.Price.ToString("c")</td>
+                    <td class="text-left">@item.Product.Name</td>
+                    <td class="text-end">@item.Product.Price.ToString("c")</td>
                     <td class="text-end">
-                        @((item.Amount * item.Steak.Price).ToString("c"))
+                        @((item.Amount * item.Product.Price).ToString("c"))
                     </td>
                     <td class="text-center">
-                        <a asp-controller="ShoppingCart" asp-action="RemoveItem" asp-route-steakId="@item.Steak.Id">
-                            <img src="~/images/delete.png" width="10" height="10" />
+                        <a asp-controller="ShoppingCart" asp-action="RemoveItem" asp-route-productId="@item.Product.Id">
+                            <i class="bi-trash"></i>
                         </a>
                     </td>
                 </tr>
@@ -46,6 +46,6 @@
     </table>
     <p class="d-inline-flex gap-1">
         <a class="btn btn-success fixed-size-btn" asp-controller="Order" asp-action="Checkout">Finalizar o pedido</a>
-        <a class="btn btn-primary fixed-size-btn" asp-controller="Steak" asp-action="List">Continuar comprando</a>
+        <a class="btn btn-primary fixed-size-btn" asp-controller="Product" asp-action="List">Continuar comprando</a>
     </p>
 </div>

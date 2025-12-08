@@ -1,25 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using TexasSteaks.Models;
-using TexasSteaks.Repositories.Interfaces;
-using TexasSteaks.ViewModels;
+using eShop.Models;
+using eShop.Repositories.Interfaces;
+using eShop.ViewModels;
 
-namespace TexasSteaks.Controllers
+namespace eShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ISteakRepository _steakRepository;
+        private readonly IProductRepository _productRepository;
 
-        public HomeController(ISteakRepository steakRepository)
+        public HomeController(IProductRepository productRepository)
         {
-            _steakRepository = steakRepository;
+            _productRepository = productRepository;
         }
 
         public IActionResult Index()
         {
             HomeViewModel homeViewModel = new()
             {
-                FavoriteSteaks = _steakRepository.FavoriteSteaks
+                FavoriteProducts = _productRepository.FavoriteProducts
             };
 
             return View(homeViewModel);

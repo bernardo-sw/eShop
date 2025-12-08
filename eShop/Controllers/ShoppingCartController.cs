@@ -1,19 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TexasSteaks.Models;
-using TexasSteaks.Repositories.Interfaces;
-using TexasSteaks.ViewModels;
+using eShop.Models;
+using eShop.Repositories.Interfaces;
+using eShop.ViewModels;
 
-namespace TexasSteaks.Controllers
+namespace eShop.Controllers
 {
     public class ShoppingCartController : Controller
     {
-        private readonly ISteakRepository _steakRepository;
+        private readonly IProductRepository _productRepository;
         private readonly IShoppingCartRepository _shoppingCartRepository;
 
-        public ShoppingCartController(ISteakRepository steakRepository,
+        public ShoppingCartController(IProductRepository productRepository,
             IShoppingCartRepository shoppingCartRepository)
         {
-            _steakRepository = steakRepository;
+            _productRepository = productRepository;
             _shoppingCartRepository = shoppingCartRepository;
         }
 
@@ -30,28 +30,28 @@ namespace TexasSteaks.Controllers
             return View(shoppingCartViewModel);
         }
 
-        public IActionResult AddItem(int steakId)
+        public IActionResult AddItem(int productId)
         {
-            Steak selectedSteak = _steakRepository.Steaks.FirstOrDefault(p => p.Id == steakId);
+            Product selectedProduct = _productRepository.Products.FirstOrDefault(p => p.Id == productId);
             ISession session = HttpContext.Session;
             string shoppingCartId = session.GetString("cartId");
 
-            if (selectedSteak != null)
+            if (selectedProduct != null)
             {
-                _shoppingCartRepository.AddToCart(selectedSteak, shoppingCartId);
+                _shoppingCartRepository.AddToCart(selectedProduct, shoppingCartId);
             }
             return RedirectToAction("Index");
         }
 
-        public IActionResult RemoveItem(int steakId)
+        public IActionResult RemoveItem(int productId)
         {
-            Steak selectedSteak = _steakRepository.Steaks.FirstOrDefault(p => p.Id == steakId);
+            Product selectedProduct = _productRepository.Products.FirstOrDefault(p => p.Id == productId);
             ISession session = HttpContext.Session;
             string shoppingCartId = session.GetString("cartId");
 
-            if (selectedSteak != null)
+            if (selectedProduct != null)
             {
-                _shoppingCartRepository.RemoveFromCart(selectedSteak, shoppingCartId);
+                _shoppingCartRepository.RemoveFromCart(selectedProduct, shoppingCartId);
             }
             return RedirectToAction("Index");
         }

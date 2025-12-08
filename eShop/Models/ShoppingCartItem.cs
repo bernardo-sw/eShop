@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TexasSteaks.Models
+namespace eShop.Models
 {
     public class ShoppingCartItem
     {
         public int Id { get; set; }
         
-        public Steak Steak { get; set; }
+        public Product Product { get; set; }
         
         public int Amount { get; set; }
         

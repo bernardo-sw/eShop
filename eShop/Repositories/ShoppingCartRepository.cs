@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using TexasSteaks.Context;
-using TexasSteaks.Models;
-using TexasSteaks.Repositories.Interfaces;
+using eShop.Context;
+using eShop.Models;
+using eShop.Repositories.Interfaces;
 
-namespace TexasSteaks.Repositories
+namespace eShop.Repositories
 {
     public class ShoppingCartRepository : IShoppingCartRepository
     {
@@ -35,15 +35,15 @@ namespace TexasSteaks.Repositories
                 Id = cartId,
                 ShoppingCartItems = _context.ShoppingCartItems
                     .Where(s => s.ShoppingCartId == cartId)
-                    .Include(s => s.Steak)
+                    .Include(s => s.Product)
                     .ToList()
             };
         }
 
-        public void AddToCart(Steak steak, string shoppingCartId)
+        public void AddToCart(Product product, string shoppingCartId)
         {
             var shoppingCartItem = _context.ShoppingCartItems.SingleOrDefault(
-                     s => s.Steak.Id == steak.Id &&
+                     s => s.Product.Id == product.Id &&
                      s.ShoppingCartId == shoppingCartId);
 
             if (shoppingCartItem == null)
@@ -51,7 +51,7 @@ namespace TexasSteaks.Repositories
                 shoppingCartItem = new ShoppingCartItem
                 {
                     ShoppingCartId = shoppingCartId,
-                    Steak = steak,
+                    Product = product,
                     Amount = 1
                 };
                 _context.ShoppingCartItems.Add(shoppingCartItem);
@@ -63,10 +63,10 @@ namespace TexasSteaks.Repositories
             _context.SaveChanges();
         }
 
-        public void RemoveFromCart(Steak steak, string shoppingCartId)
+        public void RemoveFromCart(Product product, string shoppingCartId)
         {
             ShoppingCartItem shoppingCartItem = _context.ShoppingCartItems.SingleOrDefault(
-                   s => s.Steak.Id == steak.Id &&
+                   s => s.Product.Id == product.Id &&
                    s.ShoppingCartId == shoppingCartId);
 
             if (shoppingCartItem != null)
@@ -85,7 +85,7 @@ namespace TexasSteaks.Repositories
 
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
-            return _context.ShoppingCartItems.Include(s => s.Steak).ToList();
+            return _context.ShoppingCartItems.Include(s => s.Product).ToList();
         }
 
         public void CleanCart(string shoppingCartId)
@@ -100,7 +100,7 @@ namespace TexasSteaks.Repositories
         public decimal GetShoppingCartTotal(string shoppingCartId)
         {
             return _context.ShoppingCartItems.Where(c => c.ShoppingCartId == shoppingCartId)
-                .Select(c => c.Steak.Price * c.Amount).Sum();
+                .Select(c => c.Product.Price * c.Amount).Sum();
         }
     }
 }

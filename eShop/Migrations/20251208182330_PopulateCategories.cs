@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace TexasSteaks.Migrations
+namespace eShop.Migrations
 {
     /// <inheritdoc />
     public partial class PopulateCategories : Migration

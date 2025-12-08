@@ -1,0 +1,26 @@
+﻿using Microsoft.EntityFrameworkCore;
+using eShop.Context;
+using eShop.Models;
+using eShop.Repositories.Interfaces;
+
+namespace eShop.Repositories
+{
+    public class ProductRepository : IProductRepository
+    {
+        private readonly AppDbContext _context;
+        public ProductRepository(AppDbContext context) {
+            _context = context;
+        }
+
+        public IEnumerable<Product> Products => _context.Products.Include(c => c.Category);
+
+        public IEnumerable<Product> FavoriteProducts => _context.Products
+            .Where(s => s.IsFavorite)
+            .Include(c => c.Category);
+
+        public Product GetProductById(int id)
+        {
+            return _context.Products.FirstOrDefault(s => s.Id == id);
+        }
+    }
+}

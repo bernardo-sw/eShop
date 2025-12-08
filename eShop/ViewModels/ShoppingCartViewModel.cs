@@ -1,6 +1,6 @@
-﻿using TexasSteaks.Models;
+﻿using eShop.Models;
 
-namespace TexasSteaks.ViewModels
+namespace eShop.ViewModels
 {
     public class ShoppingCartViewModel
     {

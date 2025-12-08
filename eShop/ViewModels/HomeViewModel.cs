@@ -1,9 +1,9 @@
-﻿using TexasSteaks.Models;
+﻿using eShop.Models;
 
-namespace TexasSteaks.ViewModels
+namespace eShop.ViewModels
 {
     public class HomeViewModel
     {
-        public IEnumerable<Steak> FavoriteSteaks { get; set; }
+        public IEnumerable<Product> FavoriteProducts { get; set; }
     }
 }

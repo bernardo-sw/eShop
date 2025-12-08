@@ -1,12 +1,12 @@
-﻿using TexasSteaks.Models;
+﻿using eShop.Models;
 
-namespace TexasSteaks.Repositories.Interfaces
+namespace eShop.Repositories.Interfaces
 {
     public interface IShoppingCartRepository
     {
         ShoppingCart GetCart();
-        void AddToCart(Steak steak, string shoppingCartId);
-        void RemoveFromCart(Steak steak, string shoppingCartId);
+        void AddToCart(Product product, string shoppingCartId);
+        void RemoveFromCart(Product product, string shoppingCartId);
         List<ShoppingCartItem> GetShoppingCartItems();
         void CleanCart(string shoppingCartId);
         decimal GetShoppingCartTotal(string shoppingCartId);

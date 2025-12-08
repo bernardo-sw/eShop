@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TexasSteaks.Models;
+using eShop.Models;
 
-namespace TexasSteaks.Context
+namespace eShop.Context
 {
     public class AppDbContext : DbContext
     {
@@ -10,7 +10,7 @@ namespace TexasSteaks.Context
         }
 
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Steak> Steaks { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
     }
 }

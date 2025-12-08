@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TexasSteaks.Models
+namespace eShop.Models
 {
     public class Category
     {
@@ -12,11 +12,11 @@ namespace TexasSteaks.Models
         [Display(Name = "Category name")]
         public string Name { get; set; }
 
-        [StringLength(200, MinimumLength = 10)]
+        [StringLength(250, MinimumLength = 10)]
         [Required]
         [Display(Name = "Category description")]
         public string Description { get; set; }
 
-        public List<Steak> Steaks { get; set; }
+        public List<Product> Products { get; set; }
     }
 }
