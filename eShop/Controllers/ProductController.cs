@@ -18,7 +18,8 @@ namespace eShop.Controllers
             ProductListViewModel productsListViewModel = new()
             {
                 Products = _productRepository.Products,
-                CurrentCategory = "Categoria Atual"
+                CurrentCategory = "List of Products",
+                CurrentCategoryDescription = "Full list of our products that will expand your creativity (and open your palate).",
             };
             return View(productsListViewModel);
         }
