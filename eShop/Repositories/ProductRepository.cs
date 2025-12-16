@@ -2,13 +2,17 @@
 using eShop.Context;
 using eShop.Models;
 using eShop.Repositories.Interfaces;
+using eShop.ViewModels;
 
 namespace eShop.Repositories
 {
     public class ProductRepository : IProductRepository
     {
         private readonly AppDbContext _context;
-        public ProductRepository(AppDbContext context) {
+        private object c;
+
+        public ProductRepository(AppDbContext context)
+        {
             _context = context;
         }
 
@@ -21,6 +25,23 @@ namespace eShop.Repositories
         public Product GetProductById(int id)
         {
             return _context.Products.FirstOrDefault(s => s.Id == id);
+        }
+
+        public CategoryInfoViewModel GetCategoryInfoById(int categoryId)
+        {
+            var category = _context.Categories
+                                .Select(c => new
+                                {
+                                    c.Id,
+                                    c.Name,
+                                    c.Description
+                                }).FirstOrDefault(c => c.Id == categoryId);
+
+            return new CategoryInfoViewModel()
+            {
+                Name = category.Name,
+                Description = category.Description,
+            };
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using eShop.Models;
+using eShop.ViewModels;
 
 namespace eShop.Repositories.Interfaces
 {
@@ -7,5 +8,6 @@ namespace eShop.Repositories.Interfaces
         IEnumerable<Product> Products { get; }
         IEnumerable<Product> FavoriteProducts { get; }
         Product GetProductById(int id);
+        CategoryInfoViewModel GetCategoryInfoById(int categoryId);
     }
 }

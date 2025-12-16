@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using eShop.Context;
 using eShop.Models;
 using eShop.Repositories.Interfaces;

@@ -45,14 +45,14 @@ namespace eShop
             app.UseAuthorization();
 
             app.MapControllerRoute(
-                name: "categories",
-                pattern: "Product/{action}/{category?}",
-                defaults: new {Controller = "Product", action = "List" }
+                name: "by-category",
+                pattern: "products-by-category/{categoryId?}",
+                defaults: new { controller = "Product", action = "List" }
                 );
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=home}/{action=index}/{id?}");
 
             app.Run();
         }
