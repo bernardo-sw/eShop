@@ -1,5 +1,4 @@
-﻿using eShop.Models;
-using eShop.Repositories.Interfaces;
+﻿using eShop.Repositories.Interfaces;
 using eShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
