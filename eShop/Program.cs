@@ -19,6 +19,7 @@ namespace eShop
 
             builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
             builder.Services.AddTransient<IProductRepository, ProductRepository>();
+            builder.Services.AddTransient<IOrderRepository, OrderRepository>();
             builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
             
             builder.Services.AddControllersWithViews();
