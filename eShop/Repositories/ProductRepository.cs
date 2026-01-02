@@ -9,7 +9,6 @@ namespace eShop.Repositories
     public class ProductRepository : IProductRepository
     {
         private readonly AppDbContext _context;
-        private object c;
 
         public ProductRepository(AppDbContext context)
         {
