@@ -22,6 +22,13 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 @await Component.InvokeAsync("Menu")
+                <form class="navbar-form navbar-right" asp-controller="Product" asp-action="Search" method="get">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control" placeholder="Search for product" name="searchString" value="@ViewData["searchString"]">
+                    </div>
+                </form>
+                &nbsp;
                 @await Component.InvokeAsync("ShoppingCartSummary")
             </div>
         </div>
