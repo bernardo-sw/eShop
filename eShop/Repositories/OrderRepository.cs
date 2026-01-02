@@ -7,13 +7,8 @@ namespace eShop.Repositories
     public class OrderRepository : IOrderRepository
     {
         private readonly AppDbContext _appDbContext;
-        private readonly ShoppingCart _shoppingCart;
 
-        public OrderRepository(AppDbContext appDbContext, ShoppingCart shoppingCart)
-        {
-            _appDbContext = appDbContext;
-            _shoppingCart = shoppingCart;
-        }
+        public OrderRepository(AppDbContext appDbContext) => _appDbContext = appDbContext;
 
         public void CreateOrder(Order order)
         {
@@ -21,7 +16,7 @@ namespace eShop.Repositories
             _appDbContext.Orders.Add(order);
             _appDbContext.SaveChanges();
 
-            List<ShoppingCartItem> shoppingCartItems = _shoppingCart.ShoppingCartItems;
+            var shoppingCartItems = _appDbContext.ShoppingCartItems;
 
             foreach (var item in shoppingCartItems)
             {
