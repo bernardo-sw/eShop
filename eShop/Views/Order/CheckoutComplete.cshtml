@@ -1,0 +1,48 @@
+﻿@model Order
+
+@{
+    ViewData["Title"] = "Checkout";
+    ViewData["PageHeader"] = "Checkout Completed";
+    ViewData["Icon"] = "bi bi-bag-check";
+    ViewData["PageDescription"] = @ViewBag.CheckoutCompleteMessage;
+}
+
+<div class="row justify-content-center">
+    <div class="card">
+        <div class="card-body">
+            <p>Customer : <strong>@Model.Name</strong>
+            <p>Order Date :  <strong>@Model.OrderDate</strong>
+            <p>Order Number : <strong>@Model.Id</strong></p>
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>Quantity</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                </tr>
+                @foreach (var item in Model.OrderDetails)
+                {
+                    <tr>
+                        <td>
+                            <!-- Product image-->
+                            @if (@item.Product.ImageURL is null)
+                            {
+                                <img src="~/images/6c757d.jpg" width="40" height="40" alt="..." />
+                            }
+                            else
+                            {
+                                <img src="~/images/products/@item.Product.ImageURL" width="40" height="40" alt="..." />
+                            }
+                        </td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Product.Name</td>
+                        <td>@((item.Product.Price * item.Quantity).ToString("C2"))</td>
+                    </tr>
+                }
+            </table>
+
+            <h4>Total Order Value: <strong>@(((decimal)ViewBag.TotalOrder).ToString("C2"))</strong></h4>
+        </div>
+    </div>
+</div>

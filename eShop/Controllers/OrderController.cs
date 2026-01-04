@@ -29,6 +29,7 @@ namespace eShop.Controllers
 
             //Retrieves the items from the customer's shopping cart.
             ShoppingCart shoppingCart = _shoppingCartRepository.GetCart();
+            shoppingCart.ShoppingCartItems = _shoppingCartRepository.GetShoppingCartItems();
 
             //Checks if there are any order items.
             if (shoppingCart.ShoppingCartItems.Count == 0)

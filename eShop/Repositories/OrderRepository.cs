@@ -20,14 +20,14 @@ namespace eShop.Repositories
 
             foreach (var item in shoppingCartItems)
             {
-                var orderDetail = new OrderDetails()
+                OrderDetails orderDetails = new OrderDetails()
                 {
                     Quantity = item.Amount,
                     ProductId = item.Product.Id,
                     OrderId = order.Id,
                     Price = item.Product.Price
                 };
-                _appDbContext.OrderDetails.Add(orderDetail);
+                _appDbContext.OrderDetails.Add(orderDetails);
             }
             _appDbContext.SaveChanges();
         }
