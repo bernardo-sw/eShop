@@ -13,7 +13,6 @@ namespace eShop.Models
 
         [Required(ErrorMessage = "Please provide the last name.")]
         [StringLength(100)]
-        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Please provide your address.")]
@@ -21,12 +20,10 @@ namespace eShop.Models
         public string Address { get; set; }
 
         [StringLength(100)]
-        [Display(Name = "Address Supplement")]
         public string AddressSupplement { get; set; }
 
         [Required(ErrorMessage = "Please provide your postal code.")]
         [StringLength(10, MinimumLength = 8)]
-        [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
 
         [StringLength(10)]
@@ -38,15 +35,13 @@ namespace eShop.Models
         [Required(ErrorMessage = "Please provide your phone number.")]
         [StringLength(25)]
         [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
-        [Required(ErrorMessage = "Please provide your e-mail address.")]
+        [Required(ErrorMessage = "Please provide your email address.")]
         [StringLength(50)]
         [DataType(DataType.EmailAddress)]
         [RegularExpression(@"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|""(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*"")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])",
-            ErrorMessage = "The e-mail is not in the correct format.")]
-        [Display(Name = "E-mail")]
+            ErrorMessage = "The email is not in the correct format.")]
         public string Email { get; set; }
 
         [ScaffoldColumn(false)]
