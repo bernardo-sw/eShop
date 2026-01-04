@@ -1,0 +1,76 @@
+﻿@model Order
+
+@{
+    ViewData["Title"] = "Checkout";
+    ViewData["PageHeader"] = "Checkout Order";
+    ViewData["Icon"] = "bi bi-bag-check";
+    ViewData["PageDescription"] = "You are one step away from completing your order.";
+}
+
+<form asp-action="Checkout" method="post" class="form-horizontal" role="form">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label asp-for="Address" class="control-label"></label>
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="AddressSupplement" class="control-label"></label>
+            <input asp-for="AddressSupplement" class="form-control" />
+            <span asp-validation-for="AddressSupplement" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label asp-for="PostalCode" class="control-label"></label>
+            <input asp-for="PostalCode" class="form-control" />
+            <span asp-validation-for="PostalCode" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="City" class="control-label"></label>
+            <input asp-for="City" class="form-control" value="Lins" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="State" class="control-label"></label>
+            <input asp-for="State" class="form-control" value="São Paulo" />
+            <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label asp-for="PhoneNumber" class="control-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="form-group col-md-3">
+        </div>
+        &nbsp;
+        <div class="form-group col-md-3">
+        </div>
+    </div>
+    <p class="d-inline-flex gap-1">
+        <input class="btn btn-success fixed-size-btn" type="submit" value="Complete Order" />
+        <a class="btn btn-outline-info fixed-size-btn" asp-controller="ShoppingCart" asp-action="Index">Return to Cart</a>
+    </p>
+</form>
