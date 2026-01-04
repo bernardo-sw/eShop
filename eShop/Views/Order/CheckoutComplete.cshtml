@@ -19,7 +19,8 @@
                     <th></th>
                     <th>Quantity</th>
                     <th>Product</th>
-                    <th>Price</th>
+                    <th>Unit Price</th>
+                    <th>Subtotal</th>
                 </tr>
                 @foreach (var item in Model.OrderDetails)
                 {
@@ -37,12 +38,13 @@
                         </td>
                         <td>@item.Quantity</td>
                         <td>@item.Product.Name</td>
+                        <td>@item.Product.Price.ToString("C2")</td>
                         <td>@((item.Product.Price * item.Quantity).ToString("C2"))</td>
                     </tr>
                 }
             </table>
 
-            <h4>Total Order Value: <strong>@(((decimal)ViewBag.TotalOrder).ToString("C2"))</strong></h4>
+            <h4>Total order value: <strong>@(((decimal)ViewBag.TotalOrder).ToString("C2"))</strong></h4>
         </div>
     </div>
 </div>
