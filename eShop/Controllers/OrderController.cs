@@ -24,7 +24,44 @@ namespace eShop.Controllers
         [HttpPost]
         public IActionResult Checkout(Order order)
         {
-            return View();
+            int totalItems = 0;
+            decimal totalOrder = 0.0m;
+
+            //Retrieves the items from the customer's shopping cart.
+            ShoppingCart shoppingCart = _shoppingCartRepository.GetCart();
+
+            //Checks if there are any order items.
+            if (shoppingCart.ShoppingCartItems.Count == 0)
+               ModelState.AddModelError("", "Your cart is empty, how about adding a product?");
+
+            //Calculate the total number of items and the total order amount.
+            foreach (var item in shoppingCart.ShoppingCartItems)
+            {
+                totalItems += item.Amount;
+                totalOrder += (item.Product.Price * item.Amount);
+            }
+
+            //Assign the obtained values ​​to the request.
+            order.TotalItems = totalItems;
+            order.TotalOrder = totalOrder;
+
+            //Validate the order details.
+            if (ModelState.IsValid)
+            {
+                //Create the order and details.
+                _orderRepository.CreateOrder(order);
+
+                //Define messages for the customer.
+                ViewBag.CheckoutCompleteMessage = "Thank you for your order ;)";
+                ViewBag.TotalOrder = _shoppingCartRepository.GetShoppingCartTotal(shoppingCart.Id);
+
+                //Clean the customer's shopping cart.
+                _shoppingCartRepository.CleanCart(shoppingCart.Id);
+
+                //Displays the view with customer and order data.
+                return View("~/Views/Order/CheckoutComplete.cshtml", order);
+            }
+            return View(order);
         }
     }
 }
