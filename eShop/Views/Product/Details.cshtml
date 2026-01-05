@@ -24,11 +24,18 @@
                 <div class="card-body">
                     <h5 class="card-title">@Model.Name</h5>
                     <p class="card-text">@Model.ShortDescription</p>
-                    <p class="card-text text-center">
-                        <a class="btn btn-outline-dark mt-auto" id="cartButton" asp-controller="ShoppingCart" asp-action="AddItem" asp-route-productId="@Model.Id">Add to cart</a>
-                    </p>
                 </div>
             </div>
         </div>
     </div>
+    <p class="d-inline-flex gap-1">
+        <a class="btn btn-outline-dark fixed-size-btn"
+           id="cartButton"
+           asp-controller="ShoppingCart"
+           asp-action="AddItem"
+           asp-route-productId="@Model.Id">Add to cart</a>
+        <a class="btn btn-primary fixed-size-btn" 
+            asp-controller="Product" 
+            asp-action="List">Continue shopping</a>
+    </p>
 </div>
