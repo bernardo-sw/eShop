@@ -1,7 +1,8 @@
-using Microsoft.EntityFrameworkCore;
 using eShop.Context;
 using eShop.Repositories;
 using eShop.Repositories.Interfaces;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace eShop
 {
@@ -16,6 +17,10 @@ namespace eShop
             // Add services to the container.
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+             .AddEntityFrameworkStores<AppDbContext>()
+             .AddDefaultTokenProviders();
 
             builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
             builder.Services.AddTransient<IProductRepository, ProductRepository>();
@@ -43,6 +48,7 @@ namespace eShop
             app.UseRouting();
             app.UseSession();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
