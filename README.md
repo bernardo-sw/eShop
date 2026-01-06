@@ -5,12 +5,15 @@ Platform for Your Online Store, developed using .NET 8, ASP.NET MVC, Entity Fram
 
 - .NET 8;
 - ASP.NET Core MVC;
-- Entity Framework using LINQ, Lambda expressions and migrations;
+- Entity Framework with Migrations;
+- LINQ with Lambda expressions;
 - Identity for authentication and authorization;
 - SQL Server 2022 Express.
 
 ### NuGet packages:
 
+- Microsoft.AspNetCore.Identity.EntityFrameworkCore (Version="8.0.22");
 - Microsoft.EntityFrameworkCore.Design (Version="8.0.22");
 - Microsoft.EntityFrameworkCore.SqlServer (Version="8.0.22");
 - Microsoft.EntityFrameworkCore.Tools (Version="8.0.22");
+- Microsoft.VisualStudio.Web.CodeGeneration.Design (Version="8.0.22");
