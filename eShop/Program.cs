@@ -26,7 +26,7 @@ namespace eShop
             builder.Services.AddTransient<IProductRepository, ProductRepository>();
             builder.Services.AddTransient<IOrderRepository, OrderRepository>();
             builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
-            
+
             builder.Services.AddControllersWithViews();
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddMemoryCache();
@@ -52,8 +52,13 @@ namespace eShop
             app.UseAuthorization();
 
             app.MapControllerRoute(
-                name: "by-category",
-                pattern: "products-by-category/{categoryId?}",
+                 name: "areas",
+                 pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
+                 );
+
+            app.MapControllerRoute(
+                name: "filterProductByCategory",
+                pattern: "Products/{categoryId?}",
                 defaults: new { controller = "Product", action = "List" }
                 );
 
