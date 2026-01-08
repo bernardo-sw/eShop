@@ -1,5 +1,6 @@
 ﻿using eShop.Models;
 using eShop.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eShop.Controllers
@@ -15,12 +16,14 @@ namespace eShop.Controllers
             _shoppingCartRepository = shoppingCartRepository;
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Checkout()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Checkout(Order order)
         {

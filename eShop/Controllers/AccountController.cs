@@ -76,7 +76,6 @@ namespace eShop.Controllers
             return View(registerViewModel);
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Logout()
         {

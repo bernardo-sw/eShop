@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using eShop.Models;
+﻿using eShop.Models;
 using eShop.Repositories.Interfaces;
 using eShop.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace eShop.Controllers
 {
@@ -30,6 +31,7 @@ namespace eShop.Controllers
             return View(shoppingCartViewModel);
         }
 
+        [Authorize]
         public IActionResult AddItem(int productId)
         {
             Product selectedProduct = _productRepository.Products.FirstOrDefault(p => p.Id == productId);
@@ -43,6 +45,7 @@ namespace eShop.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public IActionResult RemoveItem(int productId)
         {
             Product selectedProduct = _productRepository.Products.FirstOrDefault(p => p.Id == productId);
