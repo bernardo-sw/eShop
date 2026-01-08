@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hi, @User.Identity.Name
+            </a>
+            <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm" method="post" class="navbar-left">
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a href="#" class="dropdown-item" onclick="document.getElementById('logoutForm').submit(); return false;">
+                            <i class="bi bi-box-arrow-left me-1"></i>
+                            Sign out
+                        </a>
+                    </li>
+                </ul>
+            </form>
+        </li>
+    </ul>
+}
+else
+{
+    <form class="d-flex">
+        <a class="btn btn-outline-dark" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@string.Format("{0}{1}", Context.Request.Path, Context.Request.QueryString)">
+            <i class="bi bi-box-arrow-in-right me-1"></i>
+            Sign in
+        </a>
+        &nbsp;
+        <a class="btn btn-outline-dark" asp-controller="Account" asp-action="Register">
+            <i class="bi bi-pencil-square me-1"></i>
+            Sign up
+        </a>
+    </form>
+}

@@ -30,6 +30,8 @@
                 </form>
                 &nbsp;
                 @await Component.InvokeAsync("ShoppingCartSummary")
+                &nbsp;
+                @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
