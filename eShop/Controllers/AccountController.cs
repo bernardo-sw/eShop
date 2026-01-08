@@ -16,7 +16,6 @@ namespace eShop.Controllers
             _signInManager = signInManager;
         }
 
-        [HttpGet]
         public IActionResult Login(string returnUrl)
         {
             return View(new LoginViewModel()
@@ -46,6 +45,34 @@ namespace eShop.Controllers
             }
             ModelState.AddModelError("", "Login failed!");
             return View(loginViewModel);
+        }
+
+        public IActionResult Register()
+        {
+            return View();
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(LoginViewModel registerViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                IdentityUser user = new IdentityUser { UserName = registerViewModel.UserName };
+                IdentityResult result = await _userManager.CreateAsync(user, registerViewModel.Password);
+
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Login", "Account");
+                }
+                else
+                {
+                    this.ModelState.AddModelError("Register", "Failed to register user.");
+                }
+            }
+            return View(registerViewModel);
         }
     }
 }
